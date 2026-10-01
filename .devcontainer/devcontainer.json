@@ -1,12 +1,12 @@
 {
   "name": "CloudTasks course",
-  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
-  "forwardPorts": [
-    8000
-  ],
+  "forwardPorts": [8000],
   "portsAttributes": {
     "8000": {
       "label": "CloudTasks",
@@ -17,9 +17,7 @@
   "postCreateCommand": "python -m pip install -r requirements-lock.txt",
   "customizations": {
     "vscode": {
-      "extensions": [
-        "ms-python.python"
-      ]
+      "extensions": ["ms-python.python"]
     }
   }
 }
