@@ -1,0 +1,19 @@
+# Только предварительная техническая проба преподавателя.
+services:
+  db:
+    image: postgres:16-bookworm
+    environment:
+      POSTGRES_USER: cloudtasks
+      POSTGRES_DB: cloudtasks
+      POSTGRES_PASSWORD: ${LAB_DB_PASSWORD:?Set LAB_DB_PASSWORD for the lab}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - lab_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cloudtasks -d cloudtasks"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+volumes:
+  lab_db:
